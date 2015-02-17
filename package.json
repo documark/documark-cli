@@ -1,0 +1,36 @@
+{
+  "name": "documark-cli",
+  "version": "0.1.0",
+  "preferGlobal": true,
+  "description": "The Documark command line interface.",
+  "bin": {
+    "documark": "bin/documark",
+    "documark-compile": "bin/documark-compile"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mauvm/documark-cli.git"
+  },
+  "keywords": [
+    "documark",
+    "cli"
+  ],
+  "author": "Maurits van Mastrigt <maurits@nerdieworks.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mauvm/documark-cli/issues"
+  },
+  "homepage": "https://github.com/mauvm/documark-cli",
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "commander": "^2.6.0",
+    "monocle": "^1.1.51",
+    "throttleit": "0.0.2"
+  },
+  "devDependencies": {
+    "documark": "^0.3.0"
+  }
+}
