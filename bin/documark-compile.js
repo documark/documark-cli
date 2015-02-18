@@ -5,6 +5,7 @@
 'use strict';
 
 var program = require('commander');
+var resolve = require('resolve').sync;
 
 program
 	.option('-v, --verbose', 'increase verbosity', function(v, total) { return total + 1; }, 0)
@@ -14,7 +15,7 @@ program
 	;
 
 var basePath = (program.args.length ? program.args[program.args.length - 1] : '.');
-var Documark = require('documark');
+var Documark = require(resolve('documark', { basedir: basePath }));
 var document = new Documark(basePath);
 var chalk    = require('chalk');
 var path     = require('path');
