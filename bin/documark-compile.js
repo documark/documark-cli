@@ -35,9 +35,8 @@ function done () {
 	);
 }
 
-function error (e) {
-	console.log(chalk.red('Error!'));
-	throw e;
+function error (err) {
+	console.error(chalk.red('Error!'), err);
 }
 
 function compile (changedFile) {
@@ -53,15 +52,8 @@ function compile (changedFile) {
 
 	console.log(chalk.underline('Compiling..'));
 
-	try {
-		document.compile();
-	}
-	catch (e) {
-		error(e);
-	}
+	document.compile().then(done, error);
 }
-
-document.on('post-compile', done);
 
 compile();
 
