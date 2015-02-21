@@ -1,6 +1,6 @@
 {
   "name": "documark-cli",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "preferGlobal": true,
   "description": "The Documark command line interface.",
   "bin": {
@@ -28,6 +28,6 @@
     "resolve": "^1.1.3"
   },
   "devDependencies": {
-    "documark": "^0.3.0"
+    "documark": "^0.4.0"
   }
 }
