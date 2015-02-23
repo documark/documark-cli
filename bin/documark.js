@@ -10,6 +10,19 @@ var resolve = require('resolve').sync;
 var docRoot = process.cwd();
 var parsed, documarkPath;
 
+function error(lines) {
+	var pkg = require('../package.json');
+
+	lines.concat([
+		'',
+		'Need help? Go to: ' + pkg.homepage
+	]).forEach(function (s) {
+		console.error(s);
+	});
+
+	process.exit(1);
+}
+
 // Determine document root
 parsed = nopt({
 	'file': path
@@ -24,17 +37,22 @@ if (parsed.file) {
 try {
 	documarkPath = resolve('documark', { basedir: docRoot });
 } catch (ex) {
-	var pkg = require('../package.json');
-	[
+	error([
 		'Unable to find local Documark package.',
 		'',
 		'To install it, run "npm i documark --save" in your document root:',
-		docRoot,
-		'',
-		'Need help? Go to: ' + pkg.homepage
-	].forEach(function (s) { console.error(s); });
-	process.exit(1);
+		docRoot
+	]);
 }
 
 // Require local documark and run it
-require(documarkPath).cli();
+var Documark = require(documarkPath);
+
+if (typeof Documark !== 'object' || typeof Documark.cli !== 'function') {
+	error([
+		'Local Documark package does not provide CLI commands.',
+		'Make sure it\'s version 0.4.0 or higher.'
+	]);
+}
+
+Documark.cli();
